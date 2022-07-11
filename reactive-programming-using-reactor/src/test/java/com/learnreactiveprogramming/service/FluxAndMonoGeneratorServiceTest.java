@@ -33,4 +33,20 @@ public class FluxAndMonoGeneratorServiceTest {
 
 
     }
+
+    @Test
+    void namesMoreThan3() {
+
+        var lengthCaractherTest = fluxAndMonoGeneratorService.namesFlux_flatmap(3);
+
+        StepVerifier.create(lengthCaractherTest).expectNext("ALEX", "CHLOE");
+
+    }
+
+    @Test
+    void splitNames(){
+        var splitNames = fluxAndMonoGeneratorService.namesFlux_flatmap(3);
+
+        StepVerifier.create(splitNames).expectNext("A,L,E,X,C,H,L,O,E");
+    }
 }

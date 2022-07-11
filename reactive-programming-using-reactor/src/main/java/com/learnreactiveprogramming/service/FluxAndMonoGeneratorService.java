@@ -30,8 +30,27 @@ public class FluxAndMonoGeneratorService {
 
             return  Flux.fromIterable(List.of("alex", "ben", "chlore"))
                     .filter(name -> name.contains("l"));
+    }
+
+    public Flux<String> namesMoreThan3(int stringLength){
+        return Flux.fromIterable(List.of("alex", "ben", "chlore"))
+                .map(String::toUpperCase)
+                .filter(name -> name.length() > stringLength)
+                .log();
+    }
 
 
+    public Flux<String> namesFlux_flatmap(int stringlength){
+        return Flux.fromIterable(List.of("alex", "ben", "chloe"))
+                .map(String::toUpperCase)
+                .filter(s -> s.length() > stringlength)
+                .flatMap(s -> splitString(s));
+
+    }
+
+    public Flux<String> splitString(String name){
+        var charArray = name.split("");
+        return Flux.fromArray(charArray);
     }
 
 
