@@ -140,6 +140,14 @@ public class FluxAndMonoGeneratorService {
                 .map(t4 -> t4.getT1() + t4.getT2() + t4.getT3() + t4.getT4());
     }
 
+    public Flux<String> explore_zipWith(){
+        var abcFlux = Flux.just("A","B","C");
+
+        var defFlux = Flux.just("D","E", "F");
+
+        return abcFlux.zipWith(defFlux, (first, second) -> first + second);
+    }
+
 
     public static void main(String[] args) {
 

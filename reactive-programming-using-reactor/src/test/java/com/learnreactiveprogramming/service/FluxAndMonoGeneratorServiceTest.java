@@ -112,4 +112,11 @@ public class FluxAndMonoGeneratorServiceTest {
 
         StepVerifier.create(value).expectNext("AD14", "BE25", "CF36").verifyComplete();
     }
+
+    @Test
+    void exploreZipWith(){
+        var value = fluxAndMonoGeneratorService.explore_zipWith();
+
+        StepVerifier.create(value).expectNext("AD", "BE", "CF").verifyComplete();
+    }
 }
