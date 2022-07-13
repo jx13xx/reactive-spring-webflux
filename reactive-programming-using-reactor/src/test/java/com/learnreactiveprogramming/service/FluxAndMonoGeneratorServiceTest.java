@@ -59,12 +59,12 @@ public class FluxAndMonoGeneratorServiceTest {
         StepVerifier.create(contactNmes).expectNext("A,L,E,X,C,H,L,O,E");
     }
 
-    @Test
-    void namesMono_flatMap() {
-        var splitMono = fluxAndMonoGeneratorService.namesMono_flatMap(3);
-
-        StepVerifier.create(splitMono).expectNext(List.of("A, L, E, X")).verifyComplete();
-    }
+//    @Test
+//    void namesMono_flatMap() {
+//        var splitMono = fluxAndMonoGeneratorService.namesMono_flatMap(3);
+//
+//        StepVerifier.create(splitMono).expectNext(List.of("A, L, E, X")).verifyComplete();
+//    }
 
     @Test
     void namesFlux_transform() {
@@ -73,14 +73,14 @@ public class FluxAndMonoGeneratorServiceTest {
 
         StepVerifier.create(nameTransform).expectNext("default").verifyComplete();
     }
-
-    @Test
-    void namesFlux_transform_switchifEmpty() {
-        var conditionalFlux = fluxAndMonoGeneratorService.namesFlux_transform_switchifEmpty(9);
-
-        StepVerifier.create(conditionalFlux).expectNext("D","E","F", "A","U", "L", "T").verifyComplete();
-
-    }
+//
+//    @Test
+//    void namesFlux_transform_switchifEmpty() {
+//        var conditionalFlux = fluxAndMonoGeneratorService.namesFlux_transform_switchifEmpty(9);
+//
+//        StepVerifier.create(conditionalFlux).expectNext("D","E","F", "A","U", "L", "T").verifyComplete();
+//
+//    }
 
     @Test
     void contactFlux() {
