@@ -133,4 +133,20 @@ class MoviesInfoControllerIntTest {
                 .isNoContent();
 
     }
+
+    @Test
+    void updateMovieInfo_notFound() {
+
+        var movieInfo = new MovieInfo(null, "Dark Knight Rises1",
+                2005, List.of("Chirstian Bale", "Michael Cane"), LocalDate.parse("2005-06-15"));
+
+        webTestClient
+                .put()
+                .uri(MOVIES_INFO_URL + "/{id}", "def")
+                .bodyValue(movieInfo)
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
+
 }
