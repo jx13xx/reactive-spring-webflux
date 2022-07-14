@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -99,6 +100,16 @@ class MoviesInfoControllerIntTest {
 
                 });
 
+    }
+
+    @Test
+    void getById_notFound(){
+        webTestClient
+                .get()
+                .uri(MOVIES_INFO_URL + "/{id}", "def")
+                .exchange()
+                .expectStatus()
+                .isNotFound();
     }
 
     @Test
