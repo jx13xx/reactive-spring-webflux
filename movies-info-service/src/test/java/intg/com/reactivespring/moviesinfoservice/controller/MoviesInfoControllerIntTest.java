@@ -12,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -100,6 +101,26 @@ class MoviesInfoControllerIntTest {
 
                 });
 
+    }
+
+    @Test
+    void getMovieInfoByYear(){
+
+        var uri = UriComponentsBuilder.fromUriString(MOVIES_INFO_URL)
+                .queryParam("year", 2005)
+                .buildAndExpand().toUri();
+
+        webTestClient
+                .get()
+                .uri(uri)
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful()
+                .expectBodyList(MovieInfo.class)
+                .consumeWith(movieInfo -> {
+                    var responseBody = movieInfo.getResponseBody();
+                    System.out.println(responseBody);
+                });
     }
 
     @Test

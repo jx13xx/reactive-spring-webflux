@@ -100,4 +100,20 @@ class MovieInfoRespositoryIngTest {
                 .expectNextCount(2).verifyComplete();
     }
 
+    @Test
+    void findByYear(){
+
+        var moviesInfoFlux = movieInfoRespository.findByYear(2008).log();
+
+        StepVerifier.create(moviesInfoFlux)
+                .assertNext(movieInfo -> {
+                    assertEquals(2008, movieInfo.getYear());
+                }).verifyComplete();
+
+
+
+    }
+
+
+
 }
