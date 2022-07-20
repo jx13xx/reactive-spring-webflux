@@ -143,4 +143,29 @@ public class ReviewsIntgTest {
                 });
 
     }
+
+    @Test
+    void updatereviewNotFound(){
+
+        webTestClient
+                .put()
+                .uri(REVIEWS_URL+ "/{id}", "5")
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
+
+    @Test
+    void reviewIdNotFound(){
+       webTestClient
+               .get()
+                .uri(uriBuilder -> {
+                    return uriBuilder.path(REVIEWS_URL)
+                            .queryParam("movieInfoId", "8")
+                            .build();
+                })
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
 }
